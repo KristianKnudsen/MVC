@@ -1,0 +1,34 @@
+﻿@using ProductStore.Models.Entities
+@model Product 
+<!DOCTYPE html> 
+ 
+<html> 
+<head> 
+    <title>New product</title> 
+</head> 
+<body> 
+<div class="row"> 
+    <div class="col-md-4"> 
+      <form asp-action="Create" method="post"> 
+          <div> 
+              <label asp-for="Name">Product name:</label> 
+              <input asp-for="Name" /> 
+          </div> 
+          <div> 
+              <label asp-for="Description">Description:</label> 
+              <input asp-for="Description" /> 
+          </div> 
+          <div> 
+              <label asp-for="Price">Price:</label> 
+              <input asp-for="Price" /> 
+          </div> 
+          <div> 
+              <label for="Category">Category:</label> 
+              <input type="text" id="Category" name="Category" value=""> 
+          </div> 
+          <button type="submit">Create product</button> 
+      </form> 
+    </div> 
+</div> 
+</body> 
+</html>
