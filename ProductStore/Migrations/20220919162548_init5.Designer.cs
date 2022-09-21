@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductStore.Data;
 
@@ -11,9 +12,10 @@ using ProductStore.Data;
 namespace ProductStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220919162548_init5")]
+    partial class init5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -40,21 +42,7 @@ namespace ProductStore.Migrations
 
                     b.HasKey("CategoryId");
 
-                    b.ToTable("Categories", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            CategoryId = 1,
-                            Description = "Væsker som trygt kan konsumeres av homosapien",
-                            Name = "Drikke"
-                        },
-                        new
-                        {
-                            CategoryId = 2,
-                            Description = "Spiselige stoffer egnet til konsum for homosapien",
-                            Name = "Mat"
-                        });
+                    b.ToTable("Categories");
                 });
 
             modelBuilder.Entity("ProductStore.Models.Entities.Manufacturer", b =>
@@ -79,21 +67,6 @@ namespace ProductStore.Migrations
                     b.HasKey("ManufacturerId");
 
                     b.ToTable("Manufacturers");
-
-                    b.HasData(
-                        new
-                        {
-                            ManufacturerId = 1,
-                            Address = "Oslofjorden",
-                            Description = "Spesialister på anskaffelse av diabetes",
-                            Name = "Freia"
-                        },
-                        new
-                        {
-                            ManufacturerId = 2,
-                            Description = "Lager ukategoriserte stoffer",
-                            Name = "First Price"
-                        });
                 });
 
             modelBuilder.Entity("ProductStore.Models.Entities.Product", b =>
@@ -127,24 +100,6 @@ namespace ProductStore.Migrations
                     b.HasIndex("ManufacturerId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            ProductId = 1,
-                            CategoryId = 2,
-                            ManufacturerId = 1,
-                            Name = "Melkesjokolade",
-                            Price = 11.50m
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            CategoryId = 1,
-                            ManufacturerId = 2,
-                            Name = "Iste",
-                            Price = 31.70m
-                        });
                 });
 
             modelBuilder.Entity("ProductStore.Models.Entities.Product", b =>

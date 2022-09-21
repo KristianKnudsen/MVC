@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ProductStore.Data;
 
@@ -11,9 +12,10 @@ using ProductStore.Data;
 namespace ProductStore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220919165131_init8")]
+    partial class init8
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -136,14 +138,6 @@ namespace ProductStore.Migrations
                             ManufacturerId = 1,
                             Name = "Melkesjokolade",
                             Price = 11.50m
-                        },
-                        new
-                        {
-                            ProductId = 2,
-                            CategoryId = 1,
-                            ManufacturerId = 2,
-                            Name = "Iste",
-                            Price = 31.70m
                         });
                 });
 

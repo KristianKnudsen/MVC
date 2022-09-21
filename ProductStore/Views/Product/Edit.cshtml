@@ -1,0 +1,44 @@
+﻿@using ProductStore.Models.Entities
+@using ProductStore.Models.ViewModels
+@model ProductsEditViewModel 
+<!DOCTYPE html> 
+ 
+<html> 
+<head> 
+    <title>Edit product @Model.Name</title> 
+</head> 
+<body> 
+<div class="row"> 
+    <div class="col-md-4"> 
+        <form asp-action="Edit" method="post"> 
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div> 
+                <label asp-for="Name">Product name:</label> 
+                <input asp-for="Name" class="form-control" value="@Model.Name"/>
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div> 
+            <div> 
+                <label asp-for="Description">Description:</label> 
+                <input asp-for="Description" class="form-control" value="@Model.Description"/>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div> 
+            <div> 
+                <label asp-for="Price">Price:</label> 
+                <input asp-for="Price" class="form-control" value="@Model.Price"/>
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div> 
+            <input asp-for="ProductId" type="hidden" value="@Model.ProductId"/>
+            <select asp-for="CategoryId"
+                    asp-items="@(new SelectList(Model.Categories,"CategoryId","Name"))"> 
+            </select>
+            <select asp-for="ManufacturerId"
+                    asp-items="@(new SelectList(Model.Manufacturers,"ManufacturerId","Name"))"> 
+            </select>
+            <button type="submit">Edit product</button> 
+        </form> 
+    </div> 
+</div> 
+</body> 
+</html>
+@section Scripts
+{@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}}

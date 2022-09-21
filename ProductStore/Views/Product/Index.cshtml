@@ -1,5 +1,7 @@
 ﻿@using ProductStore.Models.Entities
-@model IEnumerable<Product>
+@model ProductStore.Models.ViewModels.ProductsIndexViewModel
+@using Microsoft.EntityFrameworkCore;
+@using ProductStore.Data;
 
 @{
     ViewData["Title"] = "Product";
@@ -12,11 +14,34 @@
     <title>Product catalogue</title>
 </head>
 <body>
-    <ul>
-        @foreach (Product p in Model)
-        {
-            <li>@p.Name</li>
-        }
-    </ul>
+<table>
+    @foreach (Product p in Model.Products)
+    {
+        string description = p?.Description ?? "";
+        decimal? price = p?.Price ?? 0;
+        <tr>
+            <td>@p.Name</td>
+            <td>@description</td>
+            <td>@price</td>
+            <td>@p.Category.Name</td>
+            <td>@p.Manufacturer.Name</td>
+            <td><a asp-area="" asp-controller="Product" asp-action="Edit" asp-route-id="@p.ProductId">edit</a></td>
+            <td><form asp-action="Delete" method="post">
+                          
+                    
+                
+                <input type="hidden" asp-for="SelectedProduct" class="form-control" value="@p.ProductId"/>
+                
+
+                <button type="submit" onclick="return confirm('Vil du slette?')">delete</button>
+
+            </form></td>
+                
+        </tr>
+    }
+</table>
 </body>
 </html>
+
+@section Scripts
+{@{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}}
